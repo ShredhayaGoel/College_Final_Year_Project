@@ -1,0 +1,33 @@
+.stall-map-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+.stall-map-svg {
+    width: 100%;
+    max-width: 700px;   /* Adjust this value */
+    height: auto;
+    display: block;
+}
+.stall-map-container svg {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
+/* Tablet */
+@media (max-width: 992px) {
+    .stall-map-svg {
+        max-width: 550px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .stall-map-svg {
+        max-width: 100%;
+    }
+}

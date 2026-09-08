@@ -1,0 +1,233 @@
+/* ========================================
+   Upcoming Events Page
+======================================== */
+
+.upcoming-events{
+
+    width:100%;
+
+    max-width:1300px;
+
+    margin:0 auto;
+
+    padding:50px 50px 50px;
+
+}
+
+
+/* ========================================
+   Header
+======================================== */
+
+.events-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:10px;
+    margin-top:0px;
+
+}
+
+.events-header h1{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    justify-self:left;
+    color:#0f172a;
+
+}
+
+
+
+
+/* ========================================
+   Event Count
+======================================== */
+
+.event-count{
+
+
+
+    color:#6f7071;
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+    margin-top:30px;
+
+}
+
+
+/* ========================================
+   Categories
+======================================== */
+
+.category-section{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:30px;
+
+    margin-bottom:20px;
+
+}
+
+.category-btn{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    padding:5px 22px;
+
+    border-radius:50px;
+
+    background:white;
+
+    color:#475569;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    border:1px solid #e2e8f0;
+
+    transition:.25s;
+
+}
+
+.category-btn:hover{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    border-color:#2563eb;
+
+}
+
+.category-btn.active{
+
+    background:#2563eb;
+
+    color:white;
+
+    border-color:#2563eb;
+
+}
+
+
+
+/* ========================================
+   Tablet
+======================================== */
+
+@media(max-width:1200px){
+
+.events-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media(max-width:768px){
+
+.upcoming-events{
+
+padding:25px;
+
+}
+
+.events-header{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.events-header h1{
+
+font-size:34px;
+
+}
+
+.events-header p{
+
+font-size:16px;
+
+}
+
+.category-section{
+
+gap:10px;
+
+margin-top:25px;
+
+margin-bottom:30px;
+
+}
+
+.category-btn{
+
+padding:10px 18px;
+
+font-size:14px;
+
+}
+
+.events-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+
+
+
+
+/* Featured vendors css by riya */
+/* ================= MAIN CONTAINER GRID ================= */
+
+
+.shop-section{
+    width:100%;
+
+    max-width:1300px;
+
+    margin:0 auto;
+
+    padding:50px 50px 50px;
+
+    
+}
+
+.shop-header{
+    
+}

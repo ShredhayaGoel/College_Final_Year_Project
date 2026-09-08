@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --secondary: #7c3aed;
+  --accent: #ff008c;
+  --text-dark: #0f172a;
+  --text-light: #475569;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --shadow-soft: 0 20px 40px -15px rgba(37, 99, 235, 0.12);
+  --shadow-hover: 0 25px 50px -12px rgba(37, 99, 235, 0.22);
+}
+
+.event-page {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+  color: var(--text-dark);
+  
+  /* Link ke aesthetic background theme jaisa Mesh Gradient */
+  background: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 0, 140, 0.08) 0px, transparent 50%),
+    linear-gradient(135deg, #eef4ff 0%, #f8fbff 50%, #f0f4ff 100%);
+  background-attachment: fixed;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Hero Glass Box Container --- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Glass Pill Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+}
+
+/* Aesthetic Gradient Text Heading */
+.hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 0;
+  max-width: 800px;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 30%, #7c3aed 70%, #ff008c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 650px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Button Wrapper */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 14px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Primary Button with Vivid Gradient */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.5);
+}
+
+/* Secondary Glass Outline Button */
+.btn-outline {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-dark);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.btn-outline:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Stats Bar Section --- */
+.stats-bar {
+  width:100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 15px 400px;
+  box-shadow: var(--shadow-soft);
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.stat-item h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+
+.stat-item p {
+  font-size: 0.65rem;
+  font-weight: 300;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--text-light);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 868px) {
+  .hero-container {
+    padding: 40px 24px;
+    border-radius: 28px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 15px;
+  }
+}
