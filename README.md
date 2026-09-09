@@ -246,9 +246,9 @@ _Add screenshots of your login page, role-based dashboards, event listing, stall
 
 ## 👨‍💻 Author
 
-**[Your Name]**
-Final Year Project — [Your College/University Name]
-📧 your.email@example.com
+**[Shredhaya Goel]**
+Final Year Project — [Meerut Institue Of Engineering & Technologu]
+📧 shredhayagoel@goel.com
 
 ---
 
