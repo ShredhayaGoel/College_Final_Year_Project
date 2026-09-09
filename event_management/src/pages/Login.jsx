@@ -1,143 +1,152 @@
-import React, { useState } from "react";
-import "../styles/Login.css";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  Mail,
+  LockKeyhole,
+  Eye,
+  EyeOff,
+  PartyPopper,
+  ArrowRight,
+} from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/Auth.css";
 
-const Login = () => {
-  const navigate = useNavigate();
-
+function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const [remember, setRemember] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
-  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const validate = () => {
-    let newErrors = {};
-
-    if (!email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (!password) {
-      newErrors.password = "Password is required";
-    }
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validate()) return;
-
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:3000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+
+        // Redirect based on role
+        switch (data.role) {
+          case "admin":
+            navigate("/admin/dashboard");
+            break;
+          case "organizer":
+            navigate("/organizer/dashboard");
+            break;
+          case "vendor":
+            navigate("/vendor/dashboard");
+            break;
+          default:
+            navigate("/dashboard");
+        }
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Server error");
+    } finally {
       setLoading(false);
-
-      alert("Login Successful");
-
-      navigate("/");
-    }, 2000);
+    }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h1>Welcome Back 👋</h1>
-
-        <p>Login to continue managing your events.</p>
-
-        <form onSubmit={handleLogin}>
-          {/* Email */}
-
-          <div className="input-box">
-            <Mail size={18} />
-
-            <input
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <div className="auth-page">
+      <div className="auth-container">
+        {/* Logo */}
+        <div className="auth-header">
+          <div className="auth-logo-icon">
+            <PartyPopper />
           </div>
 
-          {errors.email && <p className="error">{errors.email}</p>}
-
-          {/* Password */}
-
-          <div className="input-box">
-            <Lock size={18} />
-
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <button
-              type="button"
-              className="eye-btn"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
-
-          {errors.password && <p className="error">{errors.password}</p>}
-
-          <div className="login-options">
-            <label>
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(e) => setRemember(e.target.checked)}
-              />
-              Remember Me
-            </label>
-
-            <button
-              type="button"
-              className="link-btn"
-              onClick={() => navigate("/forgot-password")}
-            >
-              Forgot Password?
-            </button>
-          </div>
-
-          <button className="login-btn" disabled={loading}>
-            {loading ? "Logging In..." : "Login"}
-          </button>
-        </form>
-
-        <div className="divider">
-          <span>OR</span>
+          <h1 className="auth-title">Welcome Back</h1>
+          <p className="auth-subtitle">Log in to manage your events</p>
         </div>
 
-        <button className="google-btn">Continue with Google</button>
+        {/* Card */}
+        <div className="auth-card">
+          <form onSubmit={handleSubmit}>
+            {/* Email */}
+            <div className="form-group">
+              <label className="form-label">Email Address</label>
 
-        <button className="github-btn">Continue with GitHub</button>
+              <div className="input-wrapper">
+                <Mail className="input-icon" size={20} />
 
-        <p className="signup-text">
-          Don't have an account?
-          <button className="signup-btn" onClick={() => navigate("/signup")}>
-            Sign Up
-          </button>
-        </p>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-input"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="form-group">
+              <label className="form-label">Password</label>
+
+              <div className="input-wrapper">
+                <LockKeyhole className="input-icon" size={20} />
+
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-input"
+                  required
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="toggle-visibility-btn"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+            </div>
+
+            {/* Forgot Password */}
+            <div className="forgot-link-row">
+              <Link to="/forgot-password" className="auth-link">
+                Forgot Password?
+              </Link>
+            </div>
+
+            {/* Submit */}
+            <button type="submit" disabled={loading} className="submit-btn">
+              {loading ? "Logging in..." : "Login"}
+              {!loading && <ArrowRight size={20} />}
+            </button>
+          </form>
+
+          {/* Signup Link */}
+          <div className="auth-footer">
+            <span className="auth-footer-text">Don't have an account? </span>
+            <Link to="/signup" className="auth-link">
+              Sign Up
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
