@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Mail, PartyPopper, ArrowRight, MailCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -27,6 +29,7 @@ function ForgotPassword() {
 
       if (response.ok) {
         setEmailSent(true);
+        navigate("/newpassword", { state: { email: email } });
       } else {
         alert(data.message);
       }
