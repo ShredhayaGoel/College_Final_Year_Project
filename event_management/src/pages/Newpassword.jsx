@@ -15,6 +15,7 @@ function NewPassword() {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 
@@ -40,8 +41,9 @@ function NewPassword() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: "shubh@example.com",
+            email: email,
             newPassword: password,
+            confirmPassword: confirmPassword,
           }),
         },
       );
@@ -80,6 +82,13 @@ function NewPassword() {
           <form onSubmit={handleSubmit}>
             {/* New Password */}
             <div className="form-group">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <label className="form-label">New Password</label>
 
               <div className="input-wrapper">
