@@ -49,7 +49,7 @@ function Login() {
             navigate("/vendor/dashboard");
             break;
           default:
-            navigate("/dashboard");
+            navigate("/");
         }
       } else {
         alert(data.message);
