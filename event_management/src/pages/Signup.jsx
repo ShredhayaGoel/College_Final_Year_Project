@@ -35,7 +35,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/users/register", {
+      const response = await fetch("http://localhost:3000/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
