@@ -1,8 +1,24 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+
+const User = require("../models/User");
+const { signup } = require("../controllers/user");
+
+const { login } = require("../controllers/login");
+const forgotPassword = require("../controllers/forgotpassword");
+
+
+router.post('/signup', signup);
+router.post('/login', login);
+router.post('/forgotPassword', forgotPassword);
+
+
+router.put('/resetPassword', require("../controllers/resetPassword"));
+
+
+router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
